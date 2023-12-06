@@ -1,4 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using Vehiculos_Choferes.Datos;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//Configurar Coneccion
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    //Aca obtenemos la cadena de coneccion desde la configuracion de la aplicaion
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 // Add services to the container.
 builder.Services.AddRazorPages();
